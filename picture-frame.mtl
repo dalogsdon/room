@@ -1,0 +1,20 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Wood_Veneer_01
+Ka 0.000000 0.000000 0.000000
+Kd 0.466667 0.274510 0.137255
+Ks 0.330000 0.330000 0.330000
+map_Kd picture-frame/Wood_Veneer_01.jpg
+
+newmtl Color_G04
+Ka 0.000000 0.000000 0.000000
+Kd 0.196078 1.000000 0.196078
+Ks 0.330000 0.330000 0.330000
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+

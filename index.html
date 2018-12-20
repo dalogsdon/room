@@ -1,1 +1,93 @@
-test
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.7.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+
+<!-- set up the scene -->
+<a-scene antialias="true" physics>
+    <a-light type="ambient" color="white" intensity="0.3"></a-light>
+
+    <a-assets>
+        <a-asset-item id="house-obj" src="resume-house.obj"></a-asset-item>
+        <a-asset-item id="house-mtl" src="resume-house.mtl"></a-asset-item>
+        <a-asset-item id="frame-obj" src="picture-frame.obj"></a-asset-item>
+        <a-asset-item id="frame-mtl" src="picture-frame.mtl"></a-asset-item>
+        <a-asset-item id="table-obj" src="side-table.obj"></a-asset-item>
+        <a-asset-item id="table-mtl" src="side-table.mtl"></a-asset-item>
+
+        <a-asset-item id="drew-img" src="drew-2048.jpg"></a-asset-item>
+    </a-assets>
+
+    <a-entity vive-controls="hand: left"></a-entity>
+    <a-entity vive-controls="hand: right"></a-entity>
+
+    <!-- ground plane so you don't fall through the world -->
+    <a-grid static-body material="visible: false;"></a-grid>
+
+    <!-- room -->
+    <a-entity obj-model="obj: #house-obj; mtl: #house-mtl" position="-1.828 0 1.828">
+        <!-- room bounds -->
+        <a-plane static-body material="visible: false" height="2.7432" width="3.6576" position="0 1.3716 -1.828" rotation="0 90 0"></a-plane>
+        <a-plane static-body material="visible: false" height="2.7432" width="3.3528" position="1.6764 1.3716 -3.6576" rotation="0 0 0"></a-plane>
+        <a-plane static-body material="visible: false" height="2.7432" width="3.3528" position="1.6764 1.3716 0" rotation="0 180 0"></a-plane>
+        <a-plane static-body material="visible: false" height="2.7432" width="3.048" position="3.6576 1.3716 -1.828" rotation="0 -90 0"></a-plane>
+        <a-plane static-body material="visible: false" height="2.7432" width="0.43" position="3.5052 1.3716 -3.5052" rotation="0 -45 0"></a-plane>
+        <a-plane static-body material="visible: false" height="2.7432" width="0.43" position="3.5052 1.3716 -0.1524" rotation="0 -135 0"></a-plane>
+
+        <!-- lamp -->
+        <a-light type="point" color="white" intensity="0.4" position="1.828 2.47 -1.828"></a-light>
+
+        <!-- table -->
+        <a-entity obj-model="obj: #table-obj; mtl: #table-mtl" position="3.39 0 -0.06" rotation="0 45 0">
+            <a-text value="table" color="#51291a" rotation="-90 180 0" position="0.25 0.84 -0.17" scale=".3 .3 .3"></a-text>
+        </a-entity>
+
+        <!-- picture frame -->
+        <a-entity id="drew-frame" class="clickable" obj-model="obj: #frame-obj; mtl: #frame-mtl" position="3.65 0.95 -2.53" rotation="0 -90 0">
+            <a-plane material="src: drew-2048.jpg" position="0.71755 0.71755 .001" height="1.2319" width="1.2319"></a-plane>
+            <a-animation attribute="rotation" begin="click" dur="1000" direction="alternate" to="0 -95 0"></a-animation>
+        </a-entity>
+
+        <!-- wall text -->
+        <a-entity position="1.68 2.15 -3.65">
+            <a-text value="Drew Logsdon" scale="1 1 1" color="black" align="center" baseline="top"></a-text>
+            <a-text value="Innovator, Learner, Leader\n\n5+ years experience\nas a Web UI Developer with full-stack skills\n\nDabbler in Virtual\nand Augmented Reality"
+                scale="0.5 0.5 0.5" color="black" position="0 -0.5 0" align="center" baseline="top"></a-text>
+        </a-entity>
+
+    </a-entity>
+
+    <!-- TODO add a skybox picture -->
+    <a-sky color="#29424b"></a-sky>
+
+    <a-entity>
+        <a-entity camera="user-height: 1.6;" universal-controls="movementEasing: 15; movementAcceleration: 40;" kinematic-body="radius: 0.2;">
+            <a-entity cursor="fuse: false;" position="0 0 -1"
+                    raycaster="near: 0; far: 0.5; objects: .clickable;">
+
+                <!-- crosshair cursor -->
+                <a-entity geometry="primitive: box; height: .01; width: .001;"
+                    material="color: #434343; opacity: 1; shader: flat;"></a-entity>
+                <a-entity geometry="primitive: box; height: .001; width: .01;"
+                    material="color: #434343; opacity: 1; shader: flat;"></a-entity>
+
+                <!-- TODO: animate cursor color when hovering an object -->
+                <!-- <a-animation begin="click" easing="linear" attribute="material.color"
+                    fill="both" from="red" to="blue" dur="0"></a-animation>
+                <a-animation begin="mouseenter" end="mouseleave" easing="linear" attribute="material.color"
+                    fill="both" from="#434343" to="red" dur="0"></a-animation> -->
+            </a-entity>
+        </a-camera>
+    </a-entity>
+</a-scene>
+
+<script type="text/javascript">
+// (function() {
+//
+// })()
+</script>
+
+</body></html>
